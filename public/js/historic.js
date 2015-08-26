@@ -59,22 +59,46 @@ function plot(team){
  */
 function showInfo(data) {
 	
-	var water = "#228db2";
-	var landscape = "#a4bfd1";
-	var maplabel = "#41778d";
-	
 	var styles = [
-	  
-	  { "featureType": "landscape", "stylers": [ { "visibility": "simplified" } ] },
-	  { "featureType": "water", "stylers": [ { "visibility": "simplified" }, { "color": water } ] },
-	  { "featureType": "landscape", "stylers": [ { "color": landscape } ] },
-	  { "featureType": "road", "stylers": [ { "visibility": "off" } ] },
-	  { "featureType": "poi", "stylers": [ { "visibility": "off" } ] },
-	  { "featureType": "administrative.country", "elementType": "geometry.stroke", "stylers": [ { "color": maplabel }, { "weight": 0.5 } ] },
-	  { "featureType": "administrative", "elementType": "labels", "stylers": [ { "color": maplabel }, { "weight": 0.1 } ] },
-	  { "featureType": "administrative.province", "stylers": [ { "visibility": "off" } ] }
-
-	];
+  {
+    "featureType": "road",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "administrative.locality",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "administrative.neighborhood",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "poi",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "road",
+    "stylers": [
+      { "saturation": -67 },
+      { "weight": 0.7 },
+      { "lightness": 15 }
+    ]
+  },{
+    "featureType": "water",
+    "stylers": [
+      { "lightness": -24 }
+    ]
+  },{
+  }
+];
 
     var mapOptions = {
 		mapTypeControlOptions: { mapTypeIds: [ 'Styled'] },
