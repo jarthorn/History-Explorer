@@ -14,7 +14,10 @@ function buildContent( data ){
 								'<tr>' + 
 									'<th>Historic Site</th>' + 
 									'<td><a href="' + data.website + '"</a>' + data.site + '</td>' +
-									'<td align="center"><a href="https://twitter.com/' + data.twitter + '"</a><img src=' + twitterLogo + ' alt="Twitter" height="20" width="20"</td>' + 
+								'</tr>' +
+								'<tr>' + 
+									'<th>Description</th>' + 
+									'<td>' + data.description+ '</td>' +
 								'</tr>' +
 							'</tbody>' +
 						'<table>';
@@ -27,9 +30,9 @@ function buildContent( data ){
  * Plots information about a single team on a map
  * @param {Object} team A single team from the Bundesliga database
  */
-function plot(team){
-	var position = new google.maps.LatLng ( team.latitude, team.longitude );
-	
+function plot(site){
+	var position = new google.maps.LatLng ( site.latitude, site.longitude );
+	var weight = site.staffed === 'Yes' ? 10 : 5;//larger weight to sites that are staffed
 	var marker = new google.maps.Marker({
 		position: position,
 		icon: {
@@ -39,16 +42,16 @@ function plot(team){
 			strokeOpacity: 0.9,
 			strokeColor: "#a31720",
 			strokeWeight: 2,
-			scale: 10   //pixels
+			scale: weight   //pixels
 		},
-		title: team.team,
+		title: site.site,
 		map: this.map
 	});
 	
 
 	var that = this;
 	google.maps.event.addListener(marker, 'click', function() {
-		that.popup.setContent( buildContent(team) );
+		that.popup.setContent( buildContent(site) );
 		that.popup.open(that.map, marker);
 	});
 }
@@ -60,45 +63,44 @@ function plot(team){
 function showInfo(data) {
 	
 	var styles = [
-  {
-    "featureType": "road",
-    "elementType": "labels",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },{
-    "featureType": "administrative.locality",
-    "elementType": "labels",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },{
-    "featureType": "administrative.neighborhood",
-    "elementType": "labels",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },{
-    "featureType": "poi",
-    "elementType": "labels",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },{
-    "featureType": "road",
-    "stylers": [
-      { "saturation": -67 },
-      { "weight": 0.7 },
-      { "lightness": 15 }
-    ]
-  },{
-    "featureType": "water",
-    "stylers": [
-      { "lightness": -24 }
-    ]
-  },{
-  }
-];
+	  {
+	    "featureType": "road",
+	    "elementType": "labels",
+	    "stylers": [
+	      { "visibility": "off" }
+	    ]
+	  },{
+	    "featureType": "administrative.locality",
+	    "elementType": "labels",
+	    "stylers": [
+	      { "visibility": "off" }
+	    ]
+	  },{
+	    "featureType": "administrative.neighborhood",
+	    "elementType": "labels",
+	    "stylers": [
+	      { "visibility": "off" }
+	    ]
+	  },{
+	    "featureType": "poi",
+	    "elementType": "labels",
+	    "stylers": [
+	      { "visibility": "off" }
+	    ]
+	  },{
+	    "featureType": "road",
+	    "stylers": [
+	      { "saturation": -67 },
+	      { "weight": 0.7 },
+	      { "lightness": 15 }
+	    ]
+	  },{
+	    "featureType": "water",
+	    "stylers": [
+	      { "lightness": -24 }
+	    ]
+	  }
+	];
 
     var mapOptions = {
 		mapTypeControlOptions: { mapTypeIds: [ 'Styled'] },
