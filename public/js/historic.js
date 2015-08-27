@@ -7,13 +7,15 @@
  * @return {String} An information string about the sports team
  */
 function buildContent( data ){
-
-	var twitterLogo = "	https://abs.twimg.com/a/1382598364/images/resources/twitter-bird-blue-on-white.png";
+	var website = data.website;
+	if (!website) {
+		website = "https://www.google.ca/?gws_rd=ssl#q=" + data.site + " National Historic Site";
+	}
 	var contentString = '<table class="table table-bordered">' +
 							'<tbody>' +
 								'<tr>' + 
 									'<th>Historic Site</th>' + 
-									'<td><a href="' + data.website + '" target="_blank">' + data.site + ' </a>' + '</td>' +
+									'<td><a href="' + website + '" target="_blank">' + data.site + ' </a>' + '</td>' +
 								'</tr>' +
 								'<tr>' + 
 									'<th>Description</th>' + 
@@ -125,12 +127,9 @@ function showInfo(data) {
 }
 
 window.onload = function() {
-    var spreadsheet = '1icgNyHLS6kuVONHgL473dgo4l-Dc4k7DqZnO564dnBw';
+//    var spreadsheet = '1icgNyHLS6kuVONHgL473dgo4l-Dc4k7DqZnO564dnBw';  //hand crafted data set
+    var spreadsheet = '17Luid_Y-nWw0IazEApPHJUSHUo3UNQxa7NhzIbRhXk0';
     
-    //uncomment sheet below for Canadian version
-    //var spreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=0AnDA54eMM-5ydEJVaGNhaXR3d2RDblJ6ZEdfU3A0UXc&usp=sharing&output=html';
-    //uncomment sheet below for German version
-    //var spreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=0AhLgoEUzhCg_dEFKOS1kUG5iNDJrc2dSVGg0dWZBekE&usp=sharing&output=html';
     
     Tabletop.init({ key: spreadsheet, callback: showInfo});
 };
