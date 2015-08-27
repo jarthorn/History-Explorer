@@ -13,7 +13,7 @@ function buildContent( data ){
 							'<tbody>' +
 								'<tr>' + 
 									'<th>Historic Site</th>' + 
-									'<td><a href="' + data.website + '"</a>' + data.site + '</td>' +
+									'<td><a href="' + data.website + '" target="_blank">' + data.site + ' </a>' + '</td>' +
 								'</tr>' +
 								'<tr>' + 
 									'<th>Description</th>' + 
@@ -31,6 +31,8 @@ function buildContent( data ){
  * @param {Object} team A single team from the Bundesliga database
  */
 function plot(site){
+	if (!(site.latitude && site.longitude))
+		return;
 	var position = new google.maps.LatLng ( site.latitude, site.longitude );
 	var weight = site.staffed === 'Yes' ? 10 : 5;//larger weight to sites that are staffed
 	var marker = new google.maps.Marker({
