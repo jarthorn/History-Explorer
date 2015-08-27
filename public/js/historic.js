@@ -36,7 +36,7 @@ function plot(site){
 	if (!(site.latitude && site.longitude))
 		return;
 	var position = new google.maps.LatLng ( site.latitude, site.longitude );
-	var weight = site.staffed === 'Yes' ? 10 : 5;//larger weight to sites that are staffed
+	var weight = site["public"] === 'Yes' ? 10 : 5;//larger weight to sites that are known to be open to the public
 	var marker = new google.maps.Marker({
 		position: position,
 		icon: {
