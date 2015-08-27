@@ -2,11 +2,11 @@ applications:
 - services:
   - watsonNodeMay19-MonitoringAndAnalytics
   - Canada Historic Sites-DataCache
-  disk_quota: 1024M
+  disk_quota: 512M
   host: historic-sites
   name: Canada Historic Sites
   command: node app.js
   path: .
   domain: mybluemix.net
-  instances: 1
-  memory: 512M
+  instances: 2
+  memory: 128M
