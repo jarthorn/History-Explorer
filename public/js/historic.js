@@ -2,13 +2,14 @@
 /*eslint-env browser */
 
 /**
- * Returns a string of information about a given sports team 
- * @param {Object} data The sports team object
- * @return {String} An information string about the sports team
+ * Returns a string of information about a given historic site
+ * @param {Object} data The historic site object
+ * @return {String} An information string about the historic site
  */
 function buildContent( data ){
 	var website = data.website;
 	if (!website) {
+		//default to a google search if there is no known web site
 		website = "https://www.google.ca/?gws_rd=ssl#q=" + data.site + " National Historic Site";
 	}
 	var contentString = '<table class="table table-bordered">' +
@@ -29,8 +30,8 @@ function buildContent( data ){
 
 
 /**
- * Plots information about a single team on a map
- * @param {Object} team A single team from the Bundesliga database
+ * Plots information about a single historic site on a map
+ * @param {Object} site A single historic site from the database
  */
 function plot(site){
 	if (!(site.latitude && site.longitude))
