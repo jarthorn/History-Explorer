@@ -1,20 +1,23 @@
 {
-  "name":"Node-CacheApp",
+  "name":"History-Explorer",
   "version": "0.0.2",
-  "description": "A sample nodejs app using Elastic Caching Service for Bluemix",
+  "description": "Helps find local historic sites",
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "4.12.x ",
+    "express": "4.15.2 ",
     "ejs": "*",
     "body-parser": "1.13.2",
     "method-override": "2.3.3",
     "morgan": "1.6.1",
     "errorhandler": "1.4.1"
   },
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jarthorn/History-Explorer"
+  },
   "engines": {
-  	"node": "0.12.x"  	
+    "node": "12.x"
   }
 }
